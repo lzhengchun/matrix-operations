@@ -39,8 +39,11 @@ template <class type> class matrix
                 exit(1);
             }
         }
+        // update object properties
         nrow = row;
         ncol = col;
+
+        // initialize with give data
         if(NULL != data)
         {
             for (int i = 0; i < nrow; ++i)
