@@ -1,11 +1,11 @@
 /*
- *  dht11_to_mysql.c
+ *  matrix.hpp
  *
  *
- *  dht11_to_mysql.c contains the code that read measured data from dht11, 
- *  data process (sensor protocol) and insert read value to database table 
+ *  matrix.hpp contains the code that realize some common used matrix operations
  *  
- *  compile: gcc -Wall -o dht11_to_mysql dht11_to_mysql.c -lwiringPi `mysql_config --cflags --libs`
+ *  how to use: include this file in your code, details please check the test 
+ *  file which contains demo for all the realized functions
  */
 #include <iostream>
 
