@@ -24,11 +24,14 @@ template <class type> class matrix
     type **m;
     void print();
 
+    // construct function
     matrix(unsigned int row, unsigned int col, type * data)
     {
+        // first, allocate space for pointers of each row
         m = (type **)malloc(row * sizeof(type *));
         for(int i = 0; i < row; i++)
         {
+            // allocate space for all the rows
             m[i] = (type *)malloc(col * sizeof(type));
             if(m[i] == NULL)
             {
@@ -51,6 +54,10 @@ template <class type> class matrix
     }
     ~matrix()
     {
+        for(int i = 0; i < nrow; i++)
+        {
+            free(m[i]);
+        }
         free(m);
     }
 };

@@ -26,5 +26,6 @@ int main(int argc, char const *argv[])
     // print dot product result
     mdot -> print();
     delete mt;
+    delete mdot;
     return 0;
 }
