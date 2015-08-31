@@ -11,6 +11,8 @@
 #include <stdio.h>      /* printf, scanf, NULL */
 #include <stdlib.h>     /* malloc, free, rand */
 
+#ifndef MATRIX_HPP_
+#define MATRIX_HPP_
 using namespace std;
 
 template <class type> class matrix
@@ -130,3 +132,5 @@ template <class type> void matrix<type>::print()
         cout << endl;
     }
 }
+
+#endif  // MATRIX_HPP_
