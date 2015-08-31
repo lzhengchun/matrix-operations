@@ -8,6 +8,8 @@
  *  file which contains demo for all the realized functions
  */
 #include <iostream>
+#include <stdio.h>      /* printf, scanf, NULL */
+#include <stdlib.h>     /* malloc, free, rand */
 
 using namespace std;
 
