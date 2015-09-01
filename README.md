@@ -7,3 +7,5 @@ some common used matrix operations, regarding API manual, please check the test 
 (2) matrix transposition
 
 (3) dot product
+
+(4) multiply with a number for all its items
