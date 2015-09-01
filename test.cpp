@@ -25,6 +25,12 @@ int main(int argc, char const *argv[])
 
     // print dot product result
     mdot -> print();
+
+    cout << endl;
+
+    mdot -> multiply(1.0 / 10.0);
+
+    mdot -> print();
     delete mt;
     delete mdot;
     return 0;

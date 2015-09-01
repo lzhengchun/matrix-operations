@@ -23,6 +23,7 @@ template <class type> class matrix
     matrix<type> * T();
     type **m;
     void print();
+    void multiply(type times);
 
     // construct function
     matrix(unsigned int row, unsigned int col, type * data)
@@ -96,9 +97,9 @@ template <class type> matrix<type> * matrix<type>::dot(matrix<type> & mt)
 }
 /*
 *********************************************************************
-function name: matrix transposition
+function name: T
 
-description: dot product operation
+description: matrix transposition
 
 parameters: 
             none
@@ -121,7 +122,7 @@ template <class type> matrix<type> * matrix<type>::T()
 }
 /*
 *********************************************************************
-function name: print matrix items
+function name: print
 
 description: dot product operation
 
@@ -140,6 +141,29 @@ template <class type> void matrix<type>::print()
             cout << m[i][j] << ", ";
         }
         cout << endl;
+    }
+}
+
+/*
+*********************************************************************
+function name: multiply
+
+description: multiply with a number for all items
+
+parameters: 
+            none
+
+return: none
+*********************************************************************
+*/
+template <class type> void matrix<type>::multiply(type times)
+{
+    for (int i = 0; i < nrow; ++i)
+    {
+        for (int j = 0; j < ncol; ++j)
+        {
+            m[i][j] *= times;
+        }
     }
 }
 
