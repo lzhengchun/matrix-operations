@@ -55,6 +55,16 @@ template <class type> class matrix
                 }
             }
         }
+        else // if no initialize data given, force initialize as zero
+        {   
+            for (int i = 0; i < nrow; ++i)
+            {
+                for (int j = 0; j < ncol; ++j)
+                {
+                    m[i][j] = 0;
+                }
+            }
+        }
     }
     ~matrix()
     {
