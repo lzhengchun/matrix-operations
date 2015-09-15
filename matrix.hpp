@@ -15,14 +15,37 @@
 #define MATRIX_HPP_
 using namespace std;
 
-template <class type> class matrix
+template <class type> class matrix;
+
+template <class type> 
+class matrix
 {
-  public:
+public:
+    // dot operation
     matrix<type> * dot(matrix & m);
+
     unsigned int ncol, nrow;
-    matrix<type> * T();
+    // to store matrix data
     type **m;
+    // matrix transposition
+    matrix<type> * T();
+    
+    // print all items in he matrix
     void print();
+    friend std::ostream &operator<< (std::ostream & os, const matrix<type> & mt)
+    {
+        os << endl;
+        for (int i = 0; i < mt.nrow; ++i)
+        {
+            for (int j = 0; j < mt.ncol; ++j)
+            {
+                os << mt.m[i][j] << ", ";
+            }
+            os << endl;
+        } 
+        return os; 
+    }
+    // matrix multiplication operation
     void multiply(type times);
     // construct function, without initial value passed
     matrix(unsigned int row, unsigned int col);
@@ -37,6 +60,8 @@ template <class type> class matrix
         }
         free(m);
     }
+private:
+    
 };
 /*
 *********************************************************************
@@ -50,7 +75,8 @@ parameters:
 return: none
 *********************************************************************
 */
-template <class type> matrix<type> * matrix<type>::dot(matrix<type> & mt)
+template <class type> 
+matrix<type> * matrix<type>::dot(matrix<type> & mt)
 {
     matrix<type> * mres = new matrix(nrow, mt.ncol, NULL);      // to store result matrix
     type sum;
@@ -80,7 +106,8 @@ parameters:
 return: none
 *********************************************************************
 */
-template <class type> matrix<type> * matrix<type>::T()
+template <class type> 
+matrix<type> * matrix<type>::T()
 {
     matrix<type> * mres = new matrix(ncol, nrow, NULL);
 
@@ -105,7 +132,8 @@ parameters:
 return: none
 *********************************************************************
 */
-template <class type> void matrix<type>::print()
+template <class type> 
+void matrix<type>::print()
 {
     for (int i = 0; i < nrow; ++i)
     {
@@ -129,7 +157,8 @@ parameters:
 return: none
 *********************************************************************
 */
-template <class type> void matrix<type>::multiply(type times)
+template <class type> 
+void matrix<type>::multiply(type times)
 {
     for (int i = 0; i < nrow; ++i)
     {
@@ -151,7 +180,8 @@ parameters:
 return: none
 *********************************************************************
 */
-template <class type> matrix<type>::matrix(unsigned int row, unsigned int col, type * data)
+template <class type> 
+matrix<type>::matrix(unsigned int row, unsigned int col, type * data)
 {
     // first, allocate space for pointers of each row
     m = (type **)malloc(row * sizeof(type *));
@@ -204,7 +234,8 @@ parameters:
 return: none
 *********************************************************************
 */
-template <class type> matrix<type>::matrix(unsigned int row, unsigned int col)
+template <class type> 
+matrix<type>::matrix(unsigned int row, unsigned int col)
 {
     // first, allocate space for pointers of each row
     m = (type **)malloc(row * sizeof(type *));

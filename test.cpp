@@ -32,6 +32,8 @@ int main(int argc, char const *argv[])
 
     mdot -> print();
 
+    cout << m << endl;
+    cout << "dot product res:" << *mdot << endl;
     // you must take care of these memory allocated by new in head.
     delete mt;
     delete mdot;
