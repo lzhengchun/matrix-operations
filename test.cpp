@@ -4,7 +4,7 @@ int main(int argc, char const *argv[])
 {
     //matrix <float> & m = new matrix(2, 3);
     double data[] = {1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2, 3.3};
-    matrix <double> m(3, 3, data); // create a matrix with initial data
+    matrix <double> m(3, 3, data);
     // print the new matrix
     m.print();
 
@@ -31,6 +31,8 @@ int main(int argc, char const *argv[])
     mdot -> multiply(1.0 / 10.0);
 
     mdot -> print();
+
+    // you must take care of these memory allocated by new in head.
     delete mt;
     delete mdot;
     return 0;

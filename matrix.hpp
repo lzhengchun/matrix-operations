@@ -8,8 +8,8 @@
  *  file which contains demo for all the realized functions
  */
 #include <iostream>
-#include <stdio.h>      /* printf, scanf, NULL */
-#include <stdlib.h>     /* malloc, free, rand */
+#include <stdio.h>     
+#include <stdlib.h>     
 
 #ifndef MATRIX_HPP_
 #define MATRIX_HPP_
@@ -24,48 +24,11 @@ template <class type> class matrix
     type **m;
     void print();
     void multiply(type times);
+    // construct function, without initial value passed
+    matrix(unsigned int row, unsigned int col);
+    // construct function, with initial value passed
+    matrix(unsigned int row, unsigned int col, type * data);
 
-    // construct function
-    matrix(unsigned int row, unsigned int col, type * data)
-    {
-        // first, allocate space for pointers of each row
-        m = (type **)malloc(row * sizeof(type *));
-        for(int i = 0; i < row; i++)
-        {
-            // allocate space for all the rows
-            m[i] = (type *)malloc(col * sizeof(type));
-            if(m[i] == NULL)
-            {
-                fprintf(stderr, "out of memory\n");
-                exit(1);
-            }
-        }
-        // update object properties
-        nrow = row;
-        ncol = col;
-
-        // initialize with give data
-        if(NULL != data)
-        {
-            for (int i = 0; i < nrow; ++i)
-            {
-                for (int j = 0; j < ncol; ++j)
-                {
-                    m[i][j] = data[i*ncol + j];
-                }
-            }
-        }
-        else // if no initialize data given, force initialize as zero
-        {   
-            for (int i = 0; i < nrow; ++i)
-            {
-                for (int j = 0; j < ncol; ++j)
-                {
-                    m[i][j] = 0;
-                }
-            }
-        }
-    }
     ~matrix()
     {
         for(int i = 0; i < nrow; i++)
@@ -173,6 +136,98 @@ template <class type> void matrix<type>::multiply(type times)
         for (int j = 0; j < ncol; ++j)
         {
             m[i][j] *= times;
+        }
+    }
+}
+/*
+*********************************************************************
+function name: matrix
+
+description: constructor to handle with initial value passed.
+
+parameters: 
+            none
+
+return: none
+*********************************************************************
+*/
+template <class type> matrix<type>::matrix(unsigned int row, unsigned int col, type * data)
+{
+    // first, allocate space for pointers of each row
+    m = (type **)malloc(row * sizeof(type *));
+    for(int i = 0; i < row; i++)
+    {
+        // allocate space for all the rows
+        m[i] = (type *)malloc(col * sizeof(type));
+        if(m[i] == NULL)
+        {
+            fprintf(stderr, "out of memory\n");
+            exit(1);
+        }
+    }
+    // update object properties
+    nrow = row;
+    ncol = col;
+
+    // initialize with give data
+    if(NULL != data)
+    {
+        for (int i = 0; i < nrow; ++i)
+        {
+            for (int j = 0; j < ncol; ++j)
+            {
+                m[i][j] = data[i*ncol + j];
+            }
+        }
+    }
+    else // if no initialize data given, force initialize as zero
+    {   
+        for (int i = 0; i < nrow; ++i)
+        {
+            for (int j = 0; j < ncol; ++j)
+            {
+                m[i][j] = 0;
+            }
+        }
+    }
+}
+
+/*
+*********************************************************************
+function name: matrix
+
+description: constructor to handle without pass initial value.
+
+parameters: 
+            none
+
+return: none
+*********************************************************************
+*/
+template <class type> matrix<type>::matrix(unsigned int row, unsigned int col)
+{
+    // first, allocate space for pointers of each row
+    m = (type **)malloc(row * sizeof(type *));
+    for(int i = 0; i < row; i++)
+    {
+        // allocate space for all the rows
+        m[i] = (type *)malloc(col * sizeof(type));
+        if(m[i] == NULL)
+        {
+            fprintf(stderr, "out of memory\n");
+            exit(1);
+        }
+    }
+    // update object properties
+    nrow = row;
+    ncol = col;
+
+    // force initialize as zero
+    for (int i = 0; i < nrow; ++i)
+    {
+        for (int j = 0; j < ncol; ++j)
+        {
+            m[i][j] = 0;
         }
     }
 }
