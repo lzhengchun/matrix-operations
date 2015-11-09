@@ -44,6 +44,10 @@ public:
     }
     // matrix multiplication operation
     void multiply(type times);
+    // reload += operation
+    void operator+=(type scaler);
+    // reload *= operation
+    void operator*= (type scaler);
     // construct function, without initial value passed
     matrix(unsigned int row, unsigned int col);
     // construct function, with initial value passed
@@ -235,6 +239,49 @@ matrix<type>::matrix(unsigned int row, unsigned int col)
     for (int i = 0; i < nrow; ++i){
         for (int j = 0; j < ncol; ++j){
             m[i][j] = 0;
+        }
+    }
+}
+/*
+*********************************************************************
+function name: operator+= 
+
+description: reload += operation to add a bias to all items
+
+parameters: 
+            none
+
+return: none
+*********************************************************************
+*/
+template <class type> 
+void matrix<type>::operator+= (type bias)
+{
+    for (int i = 0; i < nrow; ++i){
+        for (int j = 0; j < ncol; ++j){
+            m[i][j] += bias;
+        }
+    }
+}
+
+/*
+*********************************************************************
+function name: operator+*= 
+
+description: reload *= operation to time a scaler to all items
+
+parameters: 
+            none
+
+return: none
+*********************************************************************
+*/
+template <class type> 
+void matrix<type>::operator*= (type scaler)
+{
+    for (int i = 0; i < nrow; ++i){
+        for (int j = 0; j < ncol; ++j){
+            m[i][j] *= scaler;
         }
     }
 }

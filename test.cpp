@@ -34,6 +34,10 @@ int main(int argc, char const *argv[])
 
     cout << m << endl;
     cout << "dot product res:" << *mdot << endl;
+    *mdot += 1.0;
+    cout << "dot product + 1 res:" << *mdot << endl;
+    *mdot *= 10;
+    cout << "(dot product + 1) * 10 res:" << *mdot << endl;
     // you must take care of these memory allocated by new in head.
     delete mt;
     delete mdot;
