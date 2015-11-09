@@ -266,7 +266,7 @@ void matrix<type>::operator+= (type bias)
 
 /*
 *********************************************************************
-function name: operator+*= 
+function name: operator *= 
 
 description: reload *= operation to time a scaler to all items
 
