@@ -32,13 +32,10 @@ public:
     
     // print all items in he matrix
     void print();
-    friend std::ostream &operator<< (std::ostream & os, const matrix<type> & mt)
-    {
+    friend std::ostream &operator<< (std::ostream & os, const matrix<type> & mt){
         os << endl;
-        for (int i = 0; i < mt.nrow; ++i)
-        {
-            for (int j = 0; j < mt.ncol; ++j)
-            {
+        for (int i = 0; i < mt.nrow; ++i){
+            for (int j = 0; j < mt.ncol; ++j){
                 os << mt.m[i][j] << ", ";
             }
             os << endl;
@@ -52,10 +49,8 @@ public:
     // construct function, with initial value passed
     matrix(unsigned int row, unsigned int col, type * data);
 
-    ~matrix()
-    {
-        for(int i = 0; i < nrow; i++)
-        {
+    ~matrix(){
+        for(int i = 0; i < nrow; i++){
             free(m[i]);
         }
         free(m);
@@ -80,13 +75,10 @@ matrix<type> * matrix<type>::dot(matrix<type> & mt)
 {
     matrix<type> * mres = new matrix(nrow, mt.ncol, NULL);      // to store result matrix
     type sum;
-    for (int i = 0; i < mres -> nrow; ++i)
-    {
-        for (int j = 0; j < mres -> ncol; ++j)
-        {
+    for (int i = 0; i < mres -> nrow; ++i){
+        for (int j = 0; j < mres -> ncol; ++j){
             sum = 0.0;
-            for (int k = 0; k < ncol; ++k)
-            {
+            for (int k = 0; k < ncol; ++k){
                 sum += m[i][k] * mt.m[k][j];
             }
             mres -> m[i][j] = sum;
@@ -111,10 +103,8 @@ matrix<type> * matrix<type>::T()
 {
     matrix<type> * mres = new matrix(ncol, nrow, NULL);
 
-    for (int i = 0; i < nrow; ++i)
-    {
-        for (int j = 0; j < ncol; ++j)
-        {
+    for (int i = 0; i < nrow; ++i){
+        for (int j = 0; j < ncol; ++j){
             mres -> m[j][i] = m[i][j];
         }
     }
@@ -135,10 +125,8 @@ return: none
 template <class type> 
 void matrix<type>::print()
 {
-    for (int i = 0; i < nrow; ++i)
-    {
-        for (int j = 0; j < ncol; ++j)
-        {
+    for (int i = 0; i < nrow; ++i){
+        for (int j = 0; j < ncol; ++j){
             cout << m[i][j] << ", ";
         }
         cout << endl;
@@ -160,10 +148,8 @@ return: none
 template <class type> 
 void matrix<type>::multiply(type times)
 {
-    for (int i = 0; i < nrow; ++i)
-    {
-        for (int j = 0; j < ncol; ++j)
-        {
+    for (int i = 0; i < nrow; ++i){
+        for (int j = 0; j < ncol; ++j){
             m[i][j] *= times;
         }
     }
@@ -185,12 +171,10 @@ matrix<type>::matrix(unsigned int row, unsigned int col, type * data)
 {
     // first, allocate space for pointers of each row
     m = (type **)malloc(row * sizeof(type *));
-    for(int i = 0; i < row; i++)
-    {
+    for(int i = 0; i < row; i++){
         // allocate space for all the rows
         m[i] = (type *)malloc(col * sizeof(type));
-        if(m[i] == NULL)
-        {
+        if(m[i] == NULL){
             fprintf(stderr, "out of memory\n");
             exit(1);
         }
@@ -202,20 +186,16 @@ matrix<type>::matrix(unsigned int row, unsigned int col, type * data)
     // initialize with give data
     if(NULL != data)
     {
-        for (int i = 0; i < nrow; ++i)
-        {
-            for (int j = 0; j < ncol; ++j)
-            {
+        for (int i = 0; i < nrow; ++i){
+            for (int j = 0; j < ncol; ++j){
                 m[i][j] = data[i*ncol + j];
             }
         }
     }
     else // if no initialize data given, force initialize as zero
     {   
-        for (int i = 0; i < nrow; ++i)
-        {
-            for (int j = 0; j < ncol; ++j)
-            {
+        for (int i = 0; i < nrow; ++i){
+            for (int j = 0; j < ncol; ++j){
                 m[i][j] = 0;
             }
         }
@@ -239,12 +219,10 @@ matrix<type>::matrix(unsigned int row, unsigned int col)
 {
     // first, allocate space for pointers of each row
     m = (type **)malloc(row * sizeof(type *));
-    for(int i = 0; i < row; i++)
-    {
+    for(int i = 0; i < row; i++){
         // allocate space for all the rows
         m[i] = (type *)malloc(col * sizeof(type));
-        if(m[i] == NULL)
-        {
+        if(m[i] == NULL){
             fprintf(stderr, "out of memory\n");
             exit(1);
         }
@@ -254,10 +232,8 @@ matrix<type>::matrix(unsigned int row, unsigned int col)
     ncol = col;
 
     // force initialize as zero
-    for (int i = 0; i < nrow; ++i)
-    {
-        for (int j = 0; j < ncol; ++j)
-        {
+    for (int i = 0; i < nrow; ++i){
+        for (int j = 0; j < ncol; ++j){
             m[i][j] = 0;
         }
     }
